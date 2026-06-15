@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { REPORT_TYPES, ReportType } from "@/lib/constants";
-import { PlusCircle, Send, CheckCircle2, Loader2, ArrowLeft, UserPlus } from "lucide-react";
+import { PlusCircle, Send, CheckCircle2, Loader2, ArrowLeft, UserPlus, Info } from "lucide-react";
 import { toast } from "sonner";
 import Container from "@/components/ui/Container";
 import {
@@ -170,66 +170,90 @@ export default function EmployeeDashboard() {
                   </Button>
                 }
               />
-              <DialogContent className="sm:max-w-md bg-background border border-border shadow-2xl relative max-h-[85vh] overflow-y-auto">
+              <DialogContent className="sm:max-w-md bg-background border border-border shadow-2xl relative overflow-hidden p-0 gap-0">
                 <div className="absolute top-0 left-0 w-full h-1.5 jisnu-gradient" />
-                <DialogHeader className="pt-4">
-                  <DialogTitle className="text-2xl font-bold text-foreground">Add New Client</DialogTitle>
-                  <DialogDescription className="text-muted-foreground">
-                    Create a new client account so they can log in and access their reports.
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleAddClient} className="space-y-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="client-name" className="text-sm font-semibold text-foreground/80">Client Name</Label>
-                    <Input
-                      id="client-name"
-                      placeholder="e.g., Nike Inc"
-                      required
-                      value={newClientName}
-                      onChange={(e) => setNewClientName(e.target.value)}
-                      className="bg-background border-border/80 h-10"
-                    />
+                
+                {/* Visual Banner Header */}
+                <div className="bg-muted/30 px-6 py-6 border-b border-border/60 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-xs shrink-0">
+                    <UserPlus className="h-6 w-6" />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="client-email" className="text-sm font-semibold text-foreground/80">Email Address</Label>
-                    <Input
-                      id="client-email"
-                      type="email"
-                      placeholder="e.g., info@nike.com"
-                      required
-                      value={newClientEmail}
-                      onChange={(e) => setNewClientEmail(e.target.value)}
-                      className="bg-background border-border/80 h-10"
-                    />
+                  <div>
+                    <DialogTitle className="text-xl font-extrabold text-foreground tracking-tight">Add New Client Account</DialogTitle>
+                    <DialogDescription className="text-xs text-muted-foreground mt-0.5">
+                      Register a secure account for client analytics access.
+                    </DialogDescription>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="client-password" className="text-sm font-semibold text-foreground/80">Password</Label>
-                    <Input
-                      id="client-password"
-                      type="password"
-                      required
-                      value={newClientPassword}
-                      onChange={(e) => setNewClientPassword(e.target.value)}
-                      className="bg-background border-border/80 h-10"
-                    />
+                </div>
+
+                <form onSubmit={handleAddClient} className="flex flex-col">
+                  {/* Fields Container */}
+                  <div className="p-6 space-y-4">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="client-name" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Company / Client Name</Label>
+                      <Input
+                        id="client-name"
+                        placeholder="e.g., Kidz Explore Therapy"
+                        required
+                        value={newClientName}
+                        onChange={(e) => setNewClientName(e.target.value)}
+                        className="bg-white border-border/80 h-11 focus:border-primary/50 focus:ring-primary/20 rounded-lg text-sm"
+                      />
+                    </div>
+                    
+                    <div className="space-y-1.5">
+                      <Label htmlFor="client-email" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Portal Email Address</Label>
+                      <Input
+                        id="client-email"
+                        type="email"
+                        placeholder="e.g., client@exploretherapy.com"
+                        required
+                        value={newClientEmail}
+                        onChange={(e) => setNewClientEmail(e.target.value)}
+                        className="bg-white border-border/80 h-11 focus:border-primary/50 focus:ring-primary/20 rounded-lg text-sm"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <Label htmlFor="client-password" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Portal Password</Label>
+                        <Input
+                          id="client-password"
+                          type="password"
+                          placeholder="••••••••"
+                          required
+                          value={newClientPassword}
+                          onChange={(e) => setNewClientPassword(e.target.value)}
+                          className="bg-white border-border/80 h-11 focus:border-primary/50 focus:ring-primary/20 rounded-lg text-sm"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <Label htmlFor="client-id" className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Unique Client ID</Label>
+                        <Input
+                          id="client-id"
+                          placeholder="e.g., KIDS_EXPLORE"
+                          required
+                          value={newClientId}
+                          onChange={(e) => setNewClientId(e.target.value)}
+                          className="bg-white border-border/80 h-11 focus:border-primary/50 focus:ring-primary/20 rounded-lg text-sm"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="bg-primary/5 border border-primary/10 rounded-lg p-3 flex items-start gap-2.5">
+                      <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-primary leading-relaxed font-medium">
+                        The <span className="font-bold">Client ID</span> must be a unique tag. Reports will be mapped to this ID to display them securely on the client portal.
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="client-id" className="text-sm font-semibold text-foreground/80">Client ID (Unique code)</Label>
-                    <Input
-                      id="client-id"
-                      placeholder="e.g., NIKE_ID"
-                      required
-                      value={newClientId}
-                      onChange={(e) => setNewClientId(e.target.value)}
-                      className="bg-background border-border/80 h-10"
-                    />
-                  </div>
-                  <DialogFooter className="pt-4">
-                    <DialogClose asChild>
-                      <Button type="button" variant="ghost">Cancel</Button>
-                    </DialogClose>
-                    <Button type="submit" disabled={isAddingClient} className="jisnu-gradient px-6 text-white font-semibold shadow-md shadow-primary/25">
-                      {isAddingClient ? <Loader2 className="animate-spin h-4 w-4" /> : "Create Client"}
+
+                  {/* Sticky Footer */}
+                  <DialogFooter className="bg-muted/40 border-t border-border/50 px-6 py-4 flex items-center justify-end gap-3 rounded-b-xl">
+                    <DialogClose render={<Button type="button" variant="ghost" className="hover:bg-muted text-muted-foreground hover:text-foreground">Cancel</Button>} />
+                    <Button type="submit" disabled={isAddingClient} className="jisnu-gradient px-6 h-10 text-white font-bold tracking-wide rounded-lg shadow-md shadow-primary/25 hover:opacity-95 transition-opacity">
+                      {isAddingClient ? <Loader2 className="animate-spin h-4 w-4" /> : "Create Account"}
                     </Button>
                   </DialogFooter>
                 </form>

@@ -46,22 +46,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background">
-      <Card className="w-full max-w-md glass-card border-white/5 border-t-white/10 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 jisnu-gradient" />
-        <CardHeader className="space-y-1 text-center pt-8">
-          <div className="mx-auto w-12 h-12 rounded-xl jisnu-gradient flex items-center justify-center mb-4 shadow-xl shadow-primary/20">
-            <Lock className="text-white h-6 w-6" />
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/15 via-background to-background">
+      <Card className="w-full max-w-md glass-card border border-border/80 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1.5 jisnu-gradient" />
+        <CardHeader className="space-y-2 text-center pt-8">
+          <div className="mx-auto w-12 h-12 rounded-xl jisnu-gradient flex items-center justify-center mb-2 shadow-lg shadow-primary/15">
+            <Lock className="text-white h-5 w-5" />
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">Welcome Back</CardTitle>
-          <CardDescription className="text-muted-foreground/80">
+          <CardTitle className="text-3xl font-bold tracking-tight text-foreground">Welcome Back</CardTitle>
+          <CardDescription className="text-muted-foreground">
             Enter your credentials to access the Jisnu Digital Portal
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-sm font-semibold text-foreground/80">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -69,28 +69,28 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-white/5 border-white/10 focus:border-primary/50 transition-all hover:bg-white/10"
+                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-sm font-semibold text-foreground/80">Password</Label>
               <Input
                 id="password"
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-white/5 border-white/10 focus:border-primary/50 transition-all hover:bg-white/10"
+                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <Button
               type="submit"
-              className="w-full py-6 text-lg font-semibold jisnu-gradient hover:opacity-90 transition-all shadow-lg shadow-primary/30"
+              className="w-full h-12 text-base font-semibold jisnu-gradient hover:opacity-95 transition-all shadow-lg shadow-primary/20 text-white rounded-lg mt-2"
               disabled={loading}
             >
               {loading ? (
                 <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Signing in...
                 </>
               ) : (

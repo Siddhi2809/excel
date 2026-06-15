@@ -78,22 +78,22 @@ export default function ReportTypeView() {
         ) : (
           <div className="space-y-6">
             {reports.map((report) => (
-              <Card key={report._id} className="glass-card overflow-hidden">
-                <CardHeader className="bg-white/5 border-b border-white/5 py-4">
+              <Card key={report._id} className="glass-card overflow-hidden border border-border/80 shadow-md">
+                <CardHeader className="bg-muted/30 border-b border-border/40 py-4 px-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-primary" />
-                      <span className="font-semibold">{report.month}</span>
+                      <span className="font-semibold text-foreground">{report.month}</span>
                       <span className="text-xs text-muted-foreground ml-2">
                         Submitted on {new Date(report.createdAt).toLocaleDateString()}
                       </span>
                     </div>
                     {report.status === "unread" && (
-                      <Badge className="bg-primary/20 text-primary border-none">New Content</Badge>
+                      <Badge className="bg-primary/10 text-primary border border-primary/20 font-semibold">New Content</Badge>
                     )}
                   </div>
                 </CardHeader>
-                <CardContent className="pt-6">
+                <CardContent className="pt-6 px-6 pb-6">
                   {/* Dynamic Rendering based on type */}
                   {renderReportData(type, report.data)}
                 </CardContent>
@@ -116,7 +116,7 @@ function renderReportData(type: string, data: any) {
           {platforms.map((p: any, idx: number) => (
             <div key={idx} className="space-y-4">
               {platforms.length > 1 && (
-                <h3 className="text-lg font-semibold text-primary border-b border-white/10 pb-2">
+                <h3 className="text-lg font-semibold text-primary border-b border-border/60 pb-2">
                   {p.platformName || `Platform ${idx + 1}`}
                 </h3>
               )}
@@ -144,9 +144,9 @@ function renderReportData(type: string, data: any) {
             <StatBox label="Reach" value={data.reach} />
           </div>
           {data.notes && (
-            <div className="bg-muted/50 p-4 rounded-xl border border-white/5">
+            <div className="bg-muted/40 p-4 rounded-xl border border-border/40">
               <h4 className="text-xs font-bold uppercase text-muted-foreground mb-2">Observations</h4>
-              <p className="text-sm">{data.notes}</p>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap">{data.notes}</p>
             </div>
           )}
         </div>
@@ -166,65 +166,65 @@ function renderReportData(type: string, data: any) {
       );
     case "recommendation":
       return (
-        <div className="prose prose-invert max-w-none">
-          <p className="text-foreground whitespace-pre-wrap">{data.recommendations}</p>
+        <div className="prose max-w-none">
+          <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.recommendations}</p>
         </div>
       );
     case "summary":
         return (
-          <div className="prose prose-invert max-w-none">
-            <p className="text-foreground whitespace-pre-wrap">{data.summary}</p>
+          <div className="prose max-w-none">
+            <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.summary}</p>
           </div>
         );
     case "audience_insight":
       return (
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
                 Age Groups
               </p>
-              <p className="text-lg font-bold">{data.age || "-"}</p>
+              <p className="text-lg font-bold text-foreground">{data.age || "-"}</p>
             </div>
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-pink-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-pink-500"></span>
                 Gender Split
               </p>
-              <p className="text-lg font-bold">{data.gender || "-"}</p>
+              <p className="text-lg font-bold text-foreground">{data.gender || "-"}</p>
             </div>
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-green-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
                 New vs Returning
               </p>
-              <p className="text-lg font-bold">{data.newVsReturning || "-"}</p>
+              <p className="text-lg font-bold text-foreground">{data.newVsReturning || "-"}</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-amber-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-amber-500"></span>
                 Top Cities
               </p>
-              <p className="text-lg font-bold">{data.topCities || "-"}</p>
+              <p className="text-lg font-bold text-foreground">{data.topCities || "-"}</p>
             </div>
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-purple-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
                 Interests
               </p>
-              <p className="text-lg font-bold">{data.interests || "-"}</p>
+              <p className="text-lg font-bold text-foreground">{data.interests || "-"}</p>
             </div>
           </div>
           {data.details && (
-            <div className="bg-muted/50 p-5 rounded-xl border border-white/5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
+            <div className="bg-primary/5 p-5 rounded-xl border border-primary/15 shadow-xs">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-1.5">
+                <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 Deep Analysis
               </h4>
-              <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap">{data.details}</p>
+              <p className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">{data.details}</p>
             </div>
           )}
         </div>
@@ -232,52 +232,52 @@ function renderReportData(type: string, data: any) {
     case "competitors_snapshot":
       return (
         <div className="space-y-6">
-          <div className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20">
-            <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 font-bold text-lg shrink-0">
+          <div className="flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-orange-500/5 to-red-500/5 border border-orange-500/10 shadow-xs">
+            <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-lg shrink-0">
               {(data.competitorName || "?").charAt(0).toUpperCase()}
             </div>
             <div>
-              <p className="text-xl font-bold">{data.competitorName || "Unknown Competitor"}</p>
+              <p className="text-xl font-bold text-foreground">{data.competitorName || "Unknown Competitor"}</p>
               <p className="text-sm text-muted-foreground">Competitor Analysis</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6">
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
                 Followers
               </p>
-              <p className="text-2xl font-bold">{data.followers ? Number(data.followers).toLocaleString() : "-"}</p>
+              <p className="text-2xl font-bold text-foreground">{data.followers ? Number(data.followers).toLocaleString() : "-"}</p>
             </div>
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+            <div className="p-4 rounded-xl bg-muted/40 border border-border/80 space-y-1 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
                 Engagement Rate
               </p>
-              <p className="text-2xl font-bold">{data.engagementRate || "-"}</p>
+              <p className="text-2xl font-bold text-foreground">{data.engagementRate || "-"}</p>
             </div>
           </div>
           {data.observation && (
-            <div className="bg-muted/50 p-5 rounded-xl border border-white/5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-                <span className="inline-block w-2 h-2 rounded-full bg-yellow-400"></span>
+            <div className="bg-primary/5 p-5 rounded-xl border border-primary/15 shadow-xs">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-1.5">
+                <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 Key Observations
               </h4>
-              <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap">{data.observation}</p>
+              <p className="text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap">{data.observation}</p>
             </div>
           )}
         </div>
       );
     default:
-      return <pre className="text-xs overflow-auto p-4 bg-muted rounded">{JSON.stringify(data, null, 2)}</pre>;
+      return <pre className="text-xs overflow-auto p-4 bg-muted rounded border border-border/40">{JSON.stringify(data, null, 2)}</pre>;
   }
 }
 
 function StatBox({ label, value }: { label: string; value: string }) {
   return (
-    <div className="space-y-1">
-      <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}</p>
-      <p className="text-xl font-bold">{value || "-"}</p>
+    <div className="p-4 rounded-xl bg-muted/40 border border-border/60 shadow-xs space-y-1">
+      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+      <p className="text-xl font-bold text-foreground">{value || "-"}</p>
     </div>
   );
 }

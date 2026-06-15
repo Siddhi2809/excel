@@ -154,42 +154,42 @@ export default function EmployeeDashboard() {
   };
 
   return (
-    <Container className="py-10">
+    <Container className="py-12">
       <div className="max-w-4xl mx-auto space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/60 pb-6">
           <div>
-            <h1 className="text-4xl font-extrabold tracking-tight">Employee Dashboard</h1>
-            <p className="text-muted-foreground mt-2">Generate and submit performance reports for clients.</p>
+            <h1 className="text-4xl font-extrabold tracking-tight text-foreground bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Employee Dashboard</h1>
+            <p className="text-muted-foreground mt-2 text-base">Generate and submit performance reports for clients.</p>
           </div>
           <div className="flex items-center gap-3">
             <Dialog open={isAddClientOpen} onOpenChange={setIsAddClientOpen}>
               <DialogTrigger asChild>
-                <Button variant="outline" className="border-white/10 hover:bg-white/5 backdrop-blur-sm gap-2">
-                  <UserPlus className="h-4 w-4" /> Add Client
+                <Button variant="outline" className="border-border hover:bg-muted gap-2 shadow-xs">
+                  <UserPlus className="h-4 w-4 text-primary" /> Add Client
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-md bg-background border-white/5 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 jisnu-gradient" />
+              <DialogContent className="sm:max-w-md bg-background border border-border shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1.5 jisnu-gradient" />
                 <DialogHeader className="pt-4">
-                  <DialogTitle className="text-2xl font-bold">Add New Client</DialogTitle>
+                  <DialogTitle className="text-2xl font-bold text-foreground">Add New Client</DialogTitle>
                   <DialogDescription className="text-muted-foreground">
                     Create a new client account so they can log in and access their reports.
                   </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleAddClient} className="space-y-4 py-4">
                   <div className="space-y-2">
-                    <Label htmlFor="client-name">Client Name</Label>
+                    <Label htmlFor="client-name" className="text-sm font-semibold text-foreground/80">Client Name</Label>
                     <Input
                       id="client-name"
                       placeholder="e.g., Nike Inc"
                       required
                       value={newClientName}
                       onChange={(e) => setNewClientName(e.target.value)}
-                      className="bg-white/5 border-white/10"
+                      className="bg-background border-border/80 h-10"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="client-email">Email Address</Label>
+                    <Label htmlFor="client-email" className="text-sm font-semibold text-foreground/80">Email Address</Label>
                     <Input
                       id="client-email"
                       type="email"
@@ -197,71 +197,71 @@ export default function EmployeeDashboard() {
                       required
                       value={newClientEmail}
                       onChange={(e) => setNewClientEmail(e.target.value)}
-                      className="bg-white/5 border-white/10"
+                      className="bg-background border-border/80 h-10"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="client-password">Password</Label>
+                    <Label htmlFor="client-password" className="text-sm font-semibold text-foreground/80">Password</Label>
                     <Input
                       id="client-password"
                       type="password"
                       required
                       value={newClientPassword}
                       onChange={(e) => setNewClientPassword(e.target.value)}
-                      className="bg-white/5 border-white/10"
+                      className="bg-background border-border/80 h-10"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="client-id">Client ID (Unique code)</Label>
+                    <Label htmlFor="client-id" className="text-sm font-semibold text-foreground/80">Client ID (Unique code)</Label>
                     <Input
                       id="client-id"
                       placeholder="e.g., NIKE_ID"
                       required
                       value={newClientId}
                       onChange={(e) => setNewClientId(e.target.value)}
-                      className="bg-white/5 border-white/10"
+                      className="bg-background border-border/80 h-10"
                     />
                   </div>
                   <DialogFooter className="pt-4">
                     <DialogClose asChild>
                       <Button type="button" variant="ghost">Cancel</Button>
                     </DialogClose>
-                    <Button type="submit" disabled={isAddingClient} className="jisnu-gradient px-6">
+                    <Button type="submit" disabled={isAddingClient} className="jisnu-gradient px-6 text-white font-semibold shadow-md shadow-primary/25">
                       {isAddingClient ? <Loader2 className="animate-spin h-4 w-4" /> : "Create Client"}
                     </Button>
                   </DialogFooter>
                 </form>
               </DialogContent>
             </Dialog>
-            <div className="jisnu-gradient px-4 py-2 rounded-lg text-white font-bold shadow-lg">
+            <div className="jisnu-gradient px-4 py-2 rounded-lg text-white font-bold shadow-md">
               Submission Mode
             </div>
           </div>
         </div>
 
         <div className="grid gap-8">
-          <Card className="glass-card overflow-hidden">
-            <div className="h-1 jisnu-gradient w-full" />
-            <CardHeader>
+          <Card className="glass-card overflow-hidden border border-border/80 shadow-lg">
+            <div className="h-1.5 jisnu-gradient w-full" />
+            <CardHeader className="px-6 pt-6">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl">Step {step}: {step === 1 ? "Configuration" : "Data Entry"}</CardTitle>
+                <CardTitle className="text-2xl font-bold text-foreground">Step {step}: {step === 1 ? "Configuration" : "Data Entry"}</CardTitle>
                 {step > 1 && (
-                  <Button variant="ghost" size="sm" onClick={() => setStep(step - 1)}>
+                  <Button variant="ghost" size="sm" onClick={() => setStep(step - 1)} className="hover:bg-muted text-muted-foreground hover:text-foreground">
                     <ArrowLeft className="h-4 w-4 mr-2" /> Back
                   </Button>
                 )}
               </div>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground text-sm mt-1">
                 {step === 1 ? "Select the recipient and the type of report you want to generate." : "Fill in the details for the selected report."}
               </CardDescription>
             </CardHeader>
-            <CardContent className="pt-6">
+            <CardContent className="px-6 py-4">
               {step === 1 ? (
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <Label className="text-base">Target Client</Label>
+                  <div className="space-y-3">
+                    <Label className="text-base font-semibold text-foreground/80">Target Client</Label>
                     <Select onValueChange={(v) => setSelectedClient(v || "")} value={selectedClient}>
-                      <SelectTrigger className="h-12 bg-white/5 border-white/10">
+                      <SelectTrigger className="h-12 bg-background border-border/80 w-full shadow-xs">
                         <SelectValue placeholder="Select a client" />
                       </SelectTrigger>
                       <SelectContent>
@@ -270,10 +270,10 @@ export default function EmployeeDashboard() {
                     </Select>
                   </div>
 
-                  <div className="space-y-4">
-                    <Label className="text-base">Report Type</Label>
+                  <div className="space-y-3">
+                    <Label className="text-base font-semibold text-foreground/80">Report Type</Label>
                     <Select onValueChange={(v) => setSelectedReportType((v as ReportType) || "")} value={selectedReportType}>
-                      <SelectTrigger className="h-12 bg-white/5 border-white/10">
+                      <SelectTrigger className="h-12 bg-background border-border/80 w-full shadow-xs">
                         <SelectValue placeholder="Select report type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -288,19 +288,19 @@ export default function EmployeeDashboard() {
                 </div>
               )}
             </CardContent>
-            <CardFooter className="bg-white/5 border-t border-white/5 py-4 flex justify-between">
-              <p className="text-xs text-muted-foreground italic">
+            <CardFooter className="bg-muted/30 border-t border-border/50 py-5 px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-muted-foreground italic text-center sm:text-left">
                 * All data will be visible to the client immediately after submission.
               </p>
               {step === 1 ? (
-                <Button onClick={handleNext} className="jisnu-gradient px-8 py-6 rounded-xl shadow-xl shadow-primary/20">
-                  Next Step <PlusCircle className="ml-2 h-5 w-5" />
+                <Button onClick={handleNext} className="jisnu-gradient px-8 py-6 rounded-xl shadow-lg shadow-primary/20 text-white font-semibold group w-full sm:w-auto">
+                  Next Step <PlusCircle className="ml-2 h-5 w-5 group-hover:scale-105 transition-transform" />
                 </Button>
               ) : (
                 <Button 
                   onClick={handleSubmit} 
                   disabled={isSubmitting}
-                  className="jisnu-gradient px-8 py-6 rounded-xl shadow-xl shadow-primary/20"
+                  className="jisnu-gradient px-8 py-6 rounded-xl shadow-lg shadow-primary/20 text-white font-semibold w-full sm:w-auto"
                 >
                   {isSubmitting ? <Loader2 className="animate-spin h-5 w-5" /> : <>Submit Report <Send className="ml-2 h-5 w-5" /></>}
                 </Button>

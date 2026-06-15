@@ -91,7 +91,7 @@ export default function PlatformOverviewForm({ onChange }: { onChange: (data: Pl
                 value={p.platformName}
                 onValueChange={(v) => handleFieldChange(idx, "platformName", v as string)}
               >
-                <SelectTrigger className="bg-white/5 border-white/10 h-10">
+                <SelectTrigger className="bg-background border-border/80 h-10">
                   <SelectValue placeholder="Select platform" />
                 </SelectTrigger>
                 <SelectContent>
@@ -164,7 +164,7 @@ export default function PlatformOverviewForm({ onChange }: { onChange: (data: Pl
           </div>
         </Card>
       ))}
-      <Button type="button" onClick={addPlatform} variant="outline" className="border-white/10 mt-2">
+      <Button type="button" onClick={addPlatform} variant="outline" className="border-border hover:bg-muted mt-2 shadow-xs">
         Add Another Platform
       </Button>
     </div>

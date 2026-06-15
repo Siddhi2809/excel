@@ -4,48 +4,65 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 180 50% 45%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 180 50% 45%;
-    --radius: 0.5rem;
+    --background: oklch(0.98 0 0);
+    --foreground: oklch(0.15 0 0);
+
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0 0);
+
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0 0);
+
+    /* Brand Colors */
+    --primary: oklch(0.35 0.12 199);      /* Deep Teal */
+    --primary-foreground: oklch(0.98 0 0); /* Light text on Deep Teal */
+    --secondary: oklch(0.65 0.15 190);    /* Cyan */
+    --secondary-foreground: oklch(0.15 0 0);
+    --accent: oklch(0.68 0.16 185);       /* Aqua */
+    --accent-foreground: oklch(0.15 0 0);
+
+    --muted: oklch(0.92 0 0);
+    --muted-foreground: oklch(0.45 0 0);
+
+    --destructive: oklch(0.57 0.2 27);
+    --destructive-foreground: oklch(0.98 0 0);
+
+    --border: oklch(0.92 0.01 199);
+    --input: oklch(0.96 0.01 199);
+    --ring: oklch(0.35 0.12 199);
+
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 180 50% 45%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 180 50% 45%;
+    /* Since user specifically requested light theme and said "i dont want this dark theme",
+       we will make the dark theme fallbacks identical to the light theme, or close to it,
+       so even if dark classes are applied, it keeps the light theme colors. This prevents dark mode leaks! */
+    --background: oklch(0.98 0 0);
+    --foreground: oklch(0.15 0 0);
+
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0 0);
+
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0 0);
+
+    --primary: oklch(0.35 0.12 199);
+    --primary-foreground: oklch(0.98 0 0);
+    --secondary: oklch(0.65 0.15 190);
+    --secondary-foreground: oklch(0.15 0 0);
+    --accent: oklch(0.68 0.16 185);
+    --accent-foreground: oklch(0.15 0 0);
+
+    --muted: oklch(0.92 0 0);
+    --muted-foreground: oklch(0.45 0 0);
+
+    --destructive: oklch(0.57 0.2 27);
+    --destructive-foreground: oklch(0.98 0 0);
+
+    --border: oklch(0.92 0.01 199);
+    --input: oklch(0.96 0.01 199);
+    --ring: oklch(0.35 0.12 199);
   }
 }
 
@@ -55,13 +72,73 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 }
 
-.glass-card {
-  @apply bg-card/60 backdrop-blur-lg border border-white/10 shadow-xl;
+@layer utilities {
+  /* Premium glass effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/70 border border-white/20;
+  }
+
+  .glass-subtle {
+    @apply backdrop-blur-sm bg-white/50;
+  }
+
+  .glass-card {
+    background-color: color-mix(in oklch, var(--card) 85%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in oklch, var(--border) 80%, transparent);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    transition: all 0.2s ease-out;
+  }
+
+  .jisnu-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+  }
+
+  /* Subtle motion helpers */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
 }
 
-.jisnu-gradient {
-  background: linear-gradient(135deg, hsl(180, 50%, 45%), hsl(220, 50%, 45%));
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Selection */
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
 }

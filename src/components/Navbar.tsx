@@ -13,10 +13,10 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between mx-auto px-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg jisnu-gradient flex items-center justify-center font-bold text-white shadow-lg">
+            <div className="w-8 h-8 rounded-lg jisnu-gradient flex items-center justify-center font-bold text-white shadow-md">
               J
             </div>
-            <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
+            <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
               Jisnu Digital
             </span>
           </Link>
@@ -25,11 +25,11 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           {session ? (
             <>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50 border">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/60 border border-border/80 shadow-xs">
                 <User className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium">
+                <span className="text-sm font-medium text-foreground/90">
                   {session.user?.name} 
-                  <span className="ml-1 text-[10px] uppercase bg-primary/20 text-primary px-1.5 py-0.5 rounded-full">
+                  <span className="ml-1.5 text-[10px] uppercase bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded-full font-bold">
                     {(session.user as any).role}
                   </span>
                 </span>

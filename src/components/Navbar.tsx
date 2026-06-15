@@ -12,10 +12,12 @@ export default function Navbar() {
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="container flex h-16 items-center justify-between mx-auto px-4">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg jisnu-gradient flex items-center justify-center font-bold text-white shadow-md">
-              J
-            </div>
+          <Link href="/" className="flex items-center space-x-3">
+            <img
+              src="/icon.jpeg"
+              alt="Jisnu Digital Logo"
+              className="w-9 h-9 rounded-lg object-cover shadow-md border border-border/60"
+            />
             <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
               Jisnu Digital
             </span>

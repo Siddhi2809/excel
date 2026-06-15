@@ -90,7 +90,7 @@ export default function RegisterPage() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
+                className="h-11 px-4 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <div className="space-y-1.5">
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
+                className="h-11 px-4 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <div className="space-y-1.5">
@@ -113,7 +113,7 @@ export default function RegisterPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
+                className="h-11 px-4 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <div className="space-y-1.5">
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="h-11 bg-background border-border/80 focus:border-primary/50 transition-all"
+                className="h-11 px-4 bg-background border-border/80 focus:border-primary/50 transition-all"
               />
             </div>
             <Button

@@ -163,12 +163,14 @@ export default function EmployeeDashboard() {
           </div>
           <div className="flex items-center gap-3">
             <Dialog open={isAddClientOpen} onOpenChange={setIsAddClientOpen}>
-              <DialogTrigger asChild>
-                <Button variant="outline" className="border-border hover:bg-muted gap-2 shadow-xs">
-                  <UserPlus className="h-4 w-4 text-primary" /> Add Client
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md bg-background border border-border shadow-2xl relative overflow-hidden">
+              <DialogTrigger
+                render={
+                  <Button variant="outline" className="border-border hover:bg-muted gap-2 shadow-xs">
+                    <UserPlus className="h-4 w-4 text-primary" /> Add Client
+                  </Button>
+                }
+              />
+              <DialogContent className="sm:max-w-md bg-background border border-border shadow-2xl relative max-h-[85vh] overflow-y-auto">
                 <div className="absolute top-0 left-0 w-full h-1.5 jisnu-gradient" />
                 <DialogHeader className="pt-4">
                   <DialogTitle className="text-2xl font-bold text-foreground">Add New Client</DialogTitle>

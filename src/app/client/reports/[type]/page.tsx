@@ -166,16 +166,72 @@ function renderReportData(type: string, data: any) {
       );
     case "recommendation":
       return (
-        <div className="prose max-w-none">
-          <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.recommendations}</p>
+        <div className="space-y-6">
+          {data.newContentIdeas && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">New Content Ideas</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.newContentIdeas}</p>
+            </div>
+          )}
+          {data.suggestedCampaigns && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Suggested Campaigns</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.suggestedCampaigns}</p>
+            </div>
+          )}
+          {data.postingFrequency && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Posting Frequency</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.postingFrequency}</p>
+            </div>
+          )}
+          {data.platformStrategyUpdates && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Platform Strategy Updates</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.platformStrategyUpdates}</p>
+            </div>
+          )}
+          {!data.newContentIdeas && data.recommendations && (
+            <div className="prose max-w-none">
+              <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.recommendations}</p>
+            </div>
+          )}
         </div>
       );
     case "summary":
-        return (
-          <div className="prose max-w-none">
-            <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.summary}</p>
-          </div>
-        );
+      return (
+        <div className="space-y-6">
+          {data.performanceSummary && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Performance Summary</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.performanceSummary}</p>
+            </div>
+          )}
+          {data.keyHighlights && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Key Highlights</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.keyHighlights}</p>
+            </div>
+          )}
+          {data.challenges && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Challenges</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.challenges}</p>
+            </div>
+          )}
+          {data.conclusions && (
+            <div className="p-5 rounded-xl bg-muted/40 border border-border/80 shadow-xs space-y-2">
+              <h4 className="text-sm font-bold text-primary">Conclusions</h4>
+              <p className="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{data.conclusions}</p>
+            </div>
+          )}
+          {!data.performanceSummary && data.summary && (
+            <div className="prose max-w-none">
+              <p className="text-foreground/90 whitespace-pre-wrap text-base leading-relaxed">{data.summary}</p>
+            </div>
+          )}
+        </div>
+      );
     case "audience_insight":
       return (
         <div className="space-y-6">

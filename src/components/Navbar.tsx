@@ -34,13 +34,13 @@ export default function Navbar() {
                   </span>
                 </span>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => signOut()} title="Logout">
+              <Button variant="ghost" size="icon" onClick={() => signOut({ callbackUrl: "/login" })} title="Logout" className="hover:bg-muted text-muted-foreground hover:text-foreground">
                 <LogOut className="h-4 w-4" />
               </Button>
             </>
           ) : (
             <Link href="/login">
-              <Button size="sm" className="rounded-full shadow-lg">
+              <Button className="h-10 px-6 rounded-full shadow-md text-white font-semibold jisnu-gradient hover:opacity-95 transition-all text-sm">
                 Sign In
               </Button>
             </Link>
